@@ -1,28 +1,26 @@
 package top.niqiu;
 
-import top.niqiu.Math.Geometry.Line;
-import top.niqiu.Math.Geometry.LineInitType;
-import top.niqiu.Network.Network;
-
-import java.io.*;
-import java.util.Scanner;
-
+import top.niqiu.Logger.Logger;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        String city = scanner.next();
-        String s =  Network.Fetch("https://api.seniverse.com/v3/weather/daily.json?key=S6JOK9adH4c36m7wx&location="
-                + city +
-                "&language=zh-Hans&unit=c&start=-1&days=8");
-        System.out.println(s);
+    public static void main(String[] args) {
+        Logger logger = new Logger();
 
-
-        Line start = new Line();
-        Line end = new Line(start, LineInitType.PARALLEL);
-        Line third = new Line(start, LineInitType.INTERSECT);
-
+        // 1/f = 1/u + 1/v
+        // 1/v = 1/u - 1/f
+        // 1/v = (u-f)/uf
+        // v = uf / (u-f)
+        double f = 25;
+        double v;
+        double lv = 0;
+        for (double u = 100; u > 0; u--) {
+            if (u == f) {
+                v = Double.MAX_VALUE;
+            } else {
+                v = u * f / (u - f);
+            }
+            System.out.println(- lv + v);
+            lv = v;
+        }
     }
 }
-
-

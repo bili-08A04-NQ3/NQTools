@@ -12,7 +12,6 @@ public class test {
 
         JPanel panel = new JPanel();
 
-        TextAction action = new TextAction("nmsl");
         JButton button = new JButton("nmsl");
         panel.add(button);
 
